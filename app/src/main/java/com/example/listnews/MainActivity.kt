@@ -3,9 +3,16 @@ package com.example.listnews
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -45,7 +52,22 @@ fun MainList() {
 
             }
     ) { padding ->
-        Text(text = "Hello World!")
+        LazyColumn(
+            contentPadding = padding
+        ) {
+            items(100) {
+                ListItem(
+                    headlineText = { Text("One line list item with 24x24 icon") },
+                    leadingContent = {
+                        Icon(
+                            Icons.Filled.ArrowRight,
+                            contentDescription = "Localized description",
+                        )
+                    }
+                )
+                Divider()
+            }
+        }
     }
 }
 
@@ -53,6 +75,6 @@ fun MainList() {
 @Composable
 fun GreetingPreview() {
     ListNewsTheme {
-        Greeting("Android")
+        MainList()
     }
 }
